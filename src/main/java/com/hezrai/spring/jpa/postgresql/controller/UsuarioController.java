@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.hezrai.spring.jpa.postgresql.model.Usuario;
 
-@CrossOrigin(origins = "http://localhost:8081")
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api")
 public class UsuarioController {
@@ -29,7 +29,7 @@ public class UsuarioController {
 	@Autowired
 	UsuarioRepository usuarioRepository;
 
-	@GetMapping("/usuarios")
+	@GetMapping("/usuario")
 	public ResponseEntity<List<Usuario>> getAllUsuario(@RequestParam(required = false) String title) {
 		try {
 			List<Usuario> usuarios = new ArrayList<Usuario>();
@@ -49,7 +49,7 @@ public class UsuarioController {
 		}
 	}
 
-	@GetMapping("/usuarios/{id}")
+	@GetMapping("/usuario/{id}")
 	public ResponseEntity<Usuario> getTutorialById(@PathVariable("id") long id) {
 		Optional<Usuario> usuarioData = usuarioRepository.findById(id);
 
@@ -60,7 +60,7 @@ public class UsuarioController {
 		}
 	}
 
-	@PostMapping("/usuarios")
+	@PostMapping("/usuario")
 	public ResponseEntity<Usuario> createTutorial(@RequestBody Usuario usuario) {
 		try {
 			Usuario _usuario = usuarioRepository
@@ -71,7 +71,7 @@ public class UsuarioController {
 		}
 	}
 
-	@PutMapping("/usuarios/{id}")
+	@PutMapping("/usuario/{id}")
 	public ResponseEntity<Usuario> updateUsuario(@PathVariable("id") long id, @RequestBody Usuario usuario) {
 		Optional<Usuario> usuarioData = usuarioRepository.findById(id);
 
@@ -86,7 +86,7 @@ public class UsuarioController {
 		}
 	}
 
-	@DeleteMapping("/usuarios/{id}")
+	@DeleteMapping("/usuario/{id}")
 	public ResponseEntity<HttpStatus> deleteTutorial(@PathVariable("id") long id) {
 		try {
 			usuarioRepository.deleteById(id);
@@ -96,7 +96,7 @@ public class UsuarioController {
 		}
 	}
 
-	@DeleteMapping("/usuarios")
+	@DeleteMapping("/usuario")
 	public ResponseEntity<HttpStatus> deleteAllUsuarios() {
 		try {
 			usuarioRepository.deleteAll();
@@ -107,7 +107,7 @@ public class UsuarioController {
 
 	}
 
-	@GetMapping("/usuarios/published")
+	@GetMapping("/usuario/published")
 	public ResponseEntity<List<Usuario>> findByPublished() {
 		try {
 			List<Usuario> usuarios = usuarioRepository.findByPublished(true);
