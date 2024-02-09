@@ -29,7 +29,7 @@ public class UsuarioController {
 	@Autowired
 	UsuarioRepository usuarioRepository;
 
-	@GetMapping("/usuarios")
+	@RequestMapping("/usuarios")
 	public ResponseEntity<List<Usuario>> getAllUsuario(@RequestParam(required = false) String title) {
 		try {
 			List<Usuario> usuarios = new ArrayList<Usuario>();
@@ -49,7 +49,7 @@ public class UsuarioController {
 		}
 	}
 
-	@GetMapping("/usuarios/{id}")
+	@RequestMapping("/usuarios/{id}")
 	public ResponseEntity<Usuario> getTutorialById(@PathVariable("id") long id) {
 		Optional<Usuario> usuarioData = usuarioRepository.findById(id);
 
@@ -107,7 +107,7 @@ public class UsuarioController {
 
 	}
 
-	@GetMapping("/usuarios/published")
+	@RequestMapping("/usuarios/published")
 	public ResponseEntity<List<Usuario>> findByPublished() {
 		try {
 			List<Usuario> usuarios = usuarioRepository.findByPublished(true);
