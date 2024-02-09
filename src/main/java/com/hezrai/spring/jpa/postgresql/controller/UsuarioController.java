@@ -29,7 +29,7 @@ public class UsuarioController {
 	@Autowired
 	UsuarioRepository usuarioRepository;
 
-	@GetMapping("/usuario")
+	@GetMapping("/usuarios")
 	public ResponseEntity<List<Usuario>> getAllUsuario(@RequestParam(required = false) String title) {
 		try {
 			List<Usuario> usuarios = new ArrayList<Usuario>();
@@ -49,7 +49,7 @@ public class UsuarioController {
 		}
 	}
 
-	@GetMapping("/usuario/{id}")
+	@GetMapping("/usuarios/{id}")
 	public ResponseEntity<Usuario> getTutorialById(@PathVariable("id") long id) {
 		Optional<Usuario> usuarioData = usuarioRepository.findById(id);
 
@@ -60,7 +60,7 @@ public class UsuarioController {
 		}
 	}
 
-	@PostMapping("/usuario")
+	@PostMapping("/usuarios")
 	public ResponseEntity<Usuario> createTutorial(@RequestBody Usuario usuario) {
 		try {
 			Usuario _usuario = usuarioRepository
@@ -71,7 +71,7 @@ public class UsuarioController {
 		}
 	}
 
-	@PutMapping("/usuario/{id}")
+	@PutMapping("/usuarios/{id}")
 	public ResponseEntity<Usuario> updateUsuario(@PathVariable("id") long id, @RequestBody Usuario usuario) {
 		Optional<Usuario> usuarioData = usuarioRepository.findById(id);
 
@@ -86,7 +86,7 @@ public class UsuarioController {
 		}
 	}
 
-	@DeleteMapping("/usuario/{id}")
+	@DeleteMapping("/usuarios/{id}")
 	public ResponseEntity<HttpStatus> deleteTutorial(@PathVariable("id") long id) {
 		try {
 			usuarioRepository.deleteById(id);
@@ -96,7 +96,7 @@ public class UsuarioController {
 		}
 	}
 
-	@DeleteMapping("/usuario")
+	@DeleteMapping("/usuarios")
 	public ResponseEntity<HttpStatus> deleteAllUsuarios() {
 		try {
 			usuarioRepository.deleteAll();
@@ -107,7 +107,7 @@ public class UsuarioController {
 
 	}
 
-	@GetMapping("/usuario/published")
+	@GetMapping("/usuarios/published")
 	public ResponseEntity<List<Usuario>> findByPublished() {
 		try {
 			List<Usuario> usuarios = usuarioRepository.findByPublished(true);
