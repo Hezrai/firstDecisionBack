@@ -6,60 +6,74 @@ import javax.persistence.*;
 @Table(name = "usuarios")
 public class Usuario {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
 
-	@Column(name = "nome")
-	private String nome;
+    @Column(name = "nome")
+    private String nome;
 
-	@Column(name = "cargo")
-	private String cargo;
+    @Column(name = "cargo")
+    private String cargo;
 
-	@Column(name = "published")
-	private boolean published;
+    @Column(name = "published")
+    private boolean published;
 
-	public Usuario() {
+    @Column(name = "email")
+    private String email;
 
-	}
 
-	public Usuario(String nome, String cargo, boolean published) {
-		this.nome = nome;
-		this.cargo = cargo;
-		this.published = published;
-	}
+    public Usuario() {
 
-	public long getId() {
-		return id;
-	}
+    }
 
-	public String getNome() {
-		return nome;
-	}
+    public Usuario(String nome, String cargo, String email, boolean published) {
+        this.nome = nome;
+        this.cargo = cargo;
+        this.email = email;
+        this.published = published;
+    }
 
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
+    public long getId() {
+        return id;
+    }
 
-	public String getCargo() {
-		return cargo;
-	}
+    public String getNome() {
+        return nome;
+    }
 
-	public void setCargo(String description) {
-		this.cargo = cargo;
-	}
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
-	public boolean isPublished() {
-		return published;
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public void setPublished(boolean isPublished) {
-		this.published = isPublished;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	@Override
-	public String toString() {
-		return "Usuario [id=" + id + ", nome=" + nome + ", carg=" + cargo + ", published=" + published + "]";
-	}
+
+    public String getCargo() {
+        return cargo;
+    }
+
+    public void setCargo(String description) {
+        this.cargo = cargo;
+    }
+
+    public boolean isPublished() {
+        return published;
+    }
+
+    public void setPublished(boolean isPublished) {
+        this.published = isPublished;
+    }
+
+    @Override
+    public String toString() {
+        return "Usuario [id=" + id + ", nome=" + nome + ", carg=" + cargo + ", published=" + published + ", email=" + email + "]";
+    }
 
 }

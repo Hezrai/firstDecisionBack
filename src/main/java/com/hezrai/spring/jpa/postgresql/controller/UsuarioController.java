@@ -10,7 +10,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -64,7 +63,7 @@ public class UsuarioController {
 	public ResponseEntity<Usuario> createTutorial(@RequestBody Usuario usuario) {
 		try {
 			Usuario _usuario = usuarioRepository
-					.save(new Usuario(usuario.getNome(), usuario.getCargo(), false));
+					.save(new Usuario(usuario.getNome(), usuario.getCargo(), usuario.getEmail(), false));
 			return new ResponseEntity<>(_usuario, HttpStatus.CREATED);
 		} catch (Exception e) {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -79,6 +78,7 @@ public class UsuarioController {
 			Usuario _usuario = usuarioData.get();
 			_usuario.setNome(usuario.getNome());
 			_usuario.setCargo(usuario.getCargo());
+			_usuario.setEmail((usuario.getEmail()));
 			_usuario.setPublished(usuario.isPublished());
 			return new ResponseEntity<>(usuarioRepository.save(_usuario), HttpStatus.OK);
 		} else {
