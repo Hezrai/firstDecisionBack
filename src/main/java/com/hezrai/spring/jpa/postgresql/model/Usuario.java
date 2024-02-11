@@ -16,8 +16,11 @@ public class Usuario {
     @Column(name = "cargo")
     private String cargo;
 
-    @Column(name = "published")
+    @Column(name = "published")//ta aqui so pra ocupar espaço
     private boolean published;
+
+    @Column(name = "senha")
+    private String senha;
 
     @Column(name = "email")
     private String email;
@@ -27,10 +30,11 @@ public class Usuario {
 
     }
 
-    public Usuario(String nome, String cargo, String email, boolean published) {
+    public Usuario(String nome, String cargo, String email, String senha, boolean published) {
         this.nome = nome;
         this.cargo = cargo;
         this.email = email;
+        this.senha = senha;
         this.published = published;
     }
 
@@ -54,12 +58,20 @@ public class Usuario {
         this.email = email;
     }
 
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
 
     public String getCargo() {
         return cargo;
     }
 
-    public void setCargo(String description) {
+    public void setCargo(String cargo) {
         this.cargo = cargo;
     }
 
@@ -73,7 +85,7 @@ public class Usuario {
 
     @Override
     public String toString() {
-        return "Usuario [id=" + id + ", nome=" + nome + ", carg=" + cargo + ", published=" + published + ", email=" + email + "]";
+        return "Usuario [id=" + id + ", nome=" + nome + ", cargo=" + cargo + ", published=" + published + ", email=" + email +", senha=" + senha + "]";
     }
 
 }

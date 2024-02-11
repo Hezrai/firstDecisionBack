@@ -20,10 +20,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.hezrai.spring.jpa.postgresql.model.Usuario;
 
+
+// Ah, mais permissivo que isso só se estivesse distribuindo abraços grátis!
 @CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api")
 public class UsuarioController {
+
 
 	@Autowired
 	UsuarioRepository usuarioRepository;
@@ -49,7 +52,7 @@ public class UsuarioController {
 	}
 
 	@RequestMapping("/usuarios/{id}")
-	public ResponseEntity<Usuario> getTutorialById(@PathVariable("id") long id) {
+	public ResponseEntity<Usuario> getUsuarioById(@PathVariable("id") long id) {
 		Optional<Usuario> usuarioData = usuarioRepository.findById(id);
 
 		if (usuarioData.isPresent()) {
@@ -60,10 +63,10 @@ public class UsuarioController {
 	}
 
 	@PostMapping("/usuarios")
-	public ResponseEntity<Usuario> createTutorial(@RequestBody Usuario usuario) {
+	public ResponseEntity<Usuario> createUsuario(@RequestBody Usuario usuario) {
 		try {
 			Usuario _usuario = usuarioRepository
-					.save(new Usuario(usuario.getNome(), usuario.getCargo(), usuario.getEmail(), false));
+					.save(new Usuario(usuario.getNome(), usuario.getCargo(), usuario.getEmail(), usuario.getSenha(), false));
 			return new ResponseEntity<>(_usuario, HttpStatus.CREATED);
 		} catch (Exception e) {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -87,7 +90,7 @@ public class UsuarioController {
 	}
 
 	@DeleteMapping("/usuarios/{id}")
-	public ResponseEntity<HttpStatus> deleteTutorial(@PathVariable("id") long id) {
+	public ResponseEntity<HttpStatus> deleteUsuario(@PathVariable("id") long id) {
 		try {
 			usuarioRepository.deleteById(id);
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
